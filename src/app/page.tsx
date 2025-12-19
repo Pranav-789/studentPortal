@@ -1,66 +1,118 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { GlassContainer } from "@/components/ui/GlassContainer";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', gap: '4rem', paddingBottom: '4rem' }}>
+      {/* Hero Section */}
+      <ScrollReveal width="100%">
+        <section style={{
+          position: 'relative',
+          height: '90vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'radial-gradient(circle at 50% 50%, var(--md-sys-color-primary-container) 0%, var(--md-sys-color-background) 70%)',
+          overflow: 'hidden'
+        }}>
+          {/* Background Orbs */}
+          <div style={{
+            position: 'absolute',
+            top: '20%',
+            left: '10%',
+            width: '300px',
+            height: '300px',
+            background: 'var(--md-sys-color-tertiary-container)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            opacity: 0.6
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '20%',
+            right: '10%',
+            width: '400px',
+            height: '400px',
+            background: 'var(--md-sys-color-secondary-container)',
+            borderRadius: '50%',
+            filter: 'blur(100px)',
+            opacity: 0.6
+          }} />
+
+          <GlassContainer style={{ maxWidth: '800px', width: '90%', textAlign: 'center', zIndex: 1 }}>
+            <h1 style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: 800,
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(45deg, var(--md-sys-color-primary), var(--md-sys-color-tertiary))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>
+              Find Your Next Academic Adventure
+            </h1>
+            <p style={{
+              fontSize: '1.25rem',
+              color: 'var(--md-sys-color-on-surface)',
+              marginBottom: '2.5rem',
+              lineHeight: 1.6
+            }}>
+              Connect with faculty and companies for cutting-edge projects and internships.
+              Track your applications and build your future.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/opportunities">
+                <Button variant="filled" style={{ fontSize: '1.1rem', padding: '0 32px', height: '48px' }}>
+                  Explore Opportunities
+                </Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button variant="outlined" style={{ fontSize: '1.1rem', padding: '0 32px', height: '48px' }}>
+                  Manage Applications
+                </Button>
+              </Link>
+            </div>
+          </GlassContainer>
+        </section>
+      </ScrollReveal>
+
+      {/* Features Section */}
+      <ScrollReveal width="100%" delay={0.2}>
+        <section style={{ padding: '0 24px', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+          <h2 style={{
+            textAlign: 'center',
+            fontSize: '2.5rem',
+            marginBottom: '3rem',
+            color: 'var(--md-sys-color-on-surface)'
+          }}>
+            Why use Student Portal?
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <Card variant="elevated">
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--md-sys-color-primary)' }}>Smart Matching</h3>
+              <p style={{ lineHeight: 1.6 }}>
+                Our system recommends projects based on your skills and interests, ensuring you find the perfect fit for your academic growth.
+              </p>
+            </Card>
+            <Card variant="elevated">
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--md-sys-color-primary)' }}>Easy Tracking</h3>
+              <p style={{ lineHeight: 1.6 }}>
+                Keep track of all your applications in one place. Get real-time status updates and never miss a deadline.
+              </p>
+            </Card>
+            <Card variant="elevated">
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--md-sys-color-primary)' }}>Direct Connection</h3>
+              <p style={{ lineHeight: 1.6 }}>
+                Connect directly with professors and industry mentors. Ask questions and get feedback on your proposals.
+              </p>
+            </Card>
+          </div>
+        </section>
+      </ScrollReveal>
+    </main>
   );
 }
